@@ -1,91 +1,331 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Connexion admin - BKI Instrument</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BKI Instrument — Connexion admin</title>
 
 <style>
-body {
-background: #1c1a19;
-color: #f5f5f5;
-font-family: Arial;
-display: flex;
-justify-content: center;
-align-items: center;
-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;600&display=swap');
+
+:root{
+--bg: #3a2418;
+--wood: #4b2f21;
+--wood2:#5a3929;
+--cream:#f3e7d6;
+--sand:#d9c2a4;
+--text:#f7efe5;
+--muted: rgba(247,239,229,.78);
+--border: rgba(247,239,229,.14);
+--accent:#c78a5b;
+--danger:#ff9a8f;
+--success:#a8e6b0;
+--shadow: 0 18px 55px rgba(0,0,0,.35);
+
+--font-body: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+--font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
 }
-.box {
-background: #2b2725;
-padding: 30px;
-border-radius: 10px;
-width: 350px;
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+margin:0;
+font-family: var(--font-body);
+color: var(--text);
+background:
+radial-gradient(900px 520px at 12% 0%, rgba(199,138,91,.18), transparent 55%),
+radial-gradient(900px 520px at 88% 10%, rgba(217,194,164,.12), transparent 55%),
+linear-gradient(180deg, var(--bg), #2a1a12);
+display:flex;
+align-items:center;
+justify-content:center;
+padding:24px;
 }
-input {
-width: 100%;
-padding: 10px;
-margin-top: 10px;
-margin-bottom: 15px;
-border-radius: 5px;
-border: none;
+
+.admin-card{
+width:100%;
+max-width:560px;
+border-radius:24px;
+background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+border: 1px solid rgba(247,239,229,.14);
+box-shadow: var(--shadow);
+padding:28px;
+backdrop-filter: blur(12px);
 }
-button {
-padding: 10px 15px;
-background: #8b5e3c;
-border: none;
-color: white;
-border-radius: 5px;
-cursor: pointer;
+
+.admin-head{
+display:flex;
+align-items:flex-start;
+gap:16px;
+margin-bottom:18px;
 }
-.success {
-background: #2e7d32;
-padding: 10px;
-margin-top: 15px;
-display: none;
+
+.admin-logo{
+width:62px;
+height:62px;
+border-radius:18px;
+display:grid;
+place-items:center;
+background: linear-gradient(135deg, rgba(199,138,91,.25), rgba(255,255,255,.06));
+border:1px solid rgba(247,239,229,.14);
+flex-shrink:0;
 }
-.error {
-background: #c62828;
-padding: 10px;
-margin-top: 15px;
-display: none;
+
+.admin-logo svg{
+width:28px;
+height:28px;
+stroke:#fff;
+stroke-width:1.8;
+fill:none;
+opacity:.95;
+}
+
+.admin-title h1{
+margin:0;
+font-family: var(--font-display);
+font-size: 40px;
+line-height:1.05;
+letter-spacing:-.3px;
+}
+
+.admin-title p{
+margin:6px 0 0;
+color: var(--muted);
+font-size:15px;
+}
+
+.intro{
+color: rgba(247,239,229,.92);
+font-size:15px;
+line-height:1.6;
+margin: 18px 0 22px;
+}
+
+.field{
+margin-bottom:18px;
+}
+
+.field label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#fff;
+}
+
+.input-wrap{
+position:relative;
+}
+
+.input-wrap input{
+width:100%;
+height:58px;
+border-radius:18px;
+border:1px solid rgba(247,239,229,.16);
+background: rgba(255,255,255,.04);
+color:#fff;
+padding:0 18px;
+font-size:17px;
+outline:none;
+}
+
+.input-wrap input::placeholder{
+color: rgba(247,239,229,.42);
+}
+
+.input-wrap input:focus{
+border-color: rgba(199,138,91,.55);
+box-shadow: 0 0 0 3px rgba(199,138,91,.12);
+}
+
+.toggle-password{
+position:absolute;
+right:14px;
+top:50%;
+transform:translateY(-50%);
+border:none;
+background:transparent;
+color: var(--sand);
+font-size:14px;
+cursor:pointer;
+font-weight:600;
+}
+
+.actions{
+display:flex;
+gap:14px;
+flex-wrap:wrap;
+margin-top:8px;
+}
+
+.btn{
+border:none;
+border-radius:18px;
+padding:14px 22px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition: transform .12s ease, opacity .12s ease, background .12s ease;
+text-decoration:none;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+}
+
+.btn:hover{
+transform: translateY(-1px);
+}
+
+.btn-primary{
+background: linear-gradient(135deg, rgba(199,138,91,.32), rgba(255,255,255,.06));
+border:1px solid rgba(199,138,91,.40);
+color:#fff;
+}
+
+.btn-secondary{
+background: rgba(255,255,255,.04);
+border:1px solid rgba(247,239,229,.18);
+color:#fff;
+}
+
+.msg{
+margin-top:18px;
+border-radius:18px;
+padding:16px 18px;
+font-size:15px;
+line-height:1.5;
+display:none;
+border:1px solid transparent;
+}
+
+.msg-success{
+background: rgba(168,230,176,.12);
+border-color: rgba(168,230,176,.28);
+color: #ddffe1;
+}
+
+.msg-error{
+background: rgba(255,154,143,.12);
+border-color: rgba(255,154,143,.28);
+color: #ffe1dd;
+}
+
+.bottom-link{
+display:inline-block;
+margin-top:18px;
+color: var(--sand);
+text-decoration:none;
+font-size:15px;
+}
+
+.bottom-link:hover{
+text-decoration:underline;
+}
+
+@media (max-width: 640px){
+.admin-card{
+padding:22px;
+border-radius:20px;
+}
+
+.admin-title h1{
+font-size:32px;
+}
+
+.actions{
+flex-direction:column;
+}
+
+.btn{
+width:100%;
+}
 }
 </style>
 </head>
-
 <body>
 
-<div class="box">
-<h2>Connexion admin</h2>
+<div class="admin-card">
+<div class="admin-head">
+<div class="admin-logo" aria-hidden="true">
+<svg viewBox="0 0 24 24">
+<path d="M14 3v11.2a3.6 3.6 0 1 1-2-3.2V5.5l10-2V12"/>
+<path d="M14 5.5l10-2"/>
+</svg>
+</div>
 
-<input type="text" id="login" placeholder="Identifiant admin">
-<input type="password" id="password" placeholder="Mot de passe">
+<div class="admin-title">
+<h1>Connexion admin</h1>
+<p>BKI Instrument — espace d’administration</p>
+</div>
+</div>
 
-<button onclick="loginAdmin()">Se connecter</button>
+<p class="intro">
+Connectez-vous avec un identifiant administrateur pour accéder à l’espace réservé.
+</p>
 
-<div class="success" id="success">Connexion réussie</div>
-<div class="error" id="error">Identifiant ou mot de passe incorrect</div>
+<div class="field">
+<label for="login">Identifiant admin</label>
+<div class="input-wrap">
+<input type="text" id="login" placeholder="Ex : admin1" />
+</div>
+</div>
+
+<div class="field">
+<label for="password">Mot de passe</label>
+<div class="input-wrap">
+<input type="password" id="password" placeholder="Votre mot de passe" />
+<button type="button" class="toggle-password" onclick="togglePassword()">Afficher</button>
+</div>
+</div>
+
+<div class="actions">
+<button class="btn btn-primary" type="button" onclick="loginAdmin()">Se connecter</button>
+<a class="btn btn-secondary" href="index.html">Retour au site</a>
+</div>
+
+<div class="msg msg-success" id="success">
+Connexion réussie. Redirection vers l’interface admin...
+</div>
+
+<div class="msg msg-error" id="error">
+Identifiant ou mot de passe incorrect.
+</div>
+
+<a href="index.html" class="bottom-link">← Revenir à l’accueil</a>
 </div>
 
 <script>
+function togglePassword() {
+const passwordInput = document.getElementById("password");
+const toggleBtn = document.querySelector(".toggle-password");
+
+if (passwordInput.type === "password") {
+passwordInput.type = "text";
+toggleBtn.textContent = "Masquer";
+} else {
+passwordInput.type = "password";
+toggleBtn.textContent = "Afficher";
+}
+}
+
 function loginAdmin() {
+const login = document.getElementById("login").value.trim();
+const password = document.getElementById("password").value;
 
-var login = document.getElementById("login").value;
-var password = document.getElementById("password").value;
-
-var admins = [
-{user: "admin1", pass: "bki2026"},
-{user: "admin2", pass: "music2026"},
-{user: "admin3", pass: "instrument2026"}
+const admins = [
+{ user: "admin1", pass: "bki2026" },
+{ user: "admin2", pass: "music2026" },
+{ user: "admin3", pass: "instrument2026" }
 ];
 
-var success = document.getElementById("success");
-var error = document.getElementById("error");
+const success = document.getElementById("success");
+const error = document.getElementById("error");
 
 success.style.display = "none";
 error.style.display = "none";
 
-for (var i = 0; i < admins.length; i++) {
+for (let i = 0; i < admins.length; i++) {
 if (login === admins[i].user && password === admins[i].pass) {
-
 success.style.display = "block";
 
 setTimeout(function() {
