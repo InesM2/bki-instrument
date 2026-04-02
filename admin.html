@@ -1,276 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>BKI Instrument — Connexion admin</title>
+<meta charset="UTF-8">
+<title>Connexion admin - BKI Instrument</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;600&display=swap');
-
-:root{
---bg: #3a2418;
---wood: #4b2f21;
---wood2:#5a3929;
---cream:#f3e7d6;
---sand:#d9c2a4;
---text:#f7efe5;
---muted: rgba(247,239,229,.78);
---border: rgba(247,239,229,.14);
---accent:#c78a5b;
---danger:#ff9a8f;
---success:#a8e6b0;
---shadow: 0 18px 55px rgba(0,0,0,.35);
---font-body: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
---font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
+body {
+background: #1c1a19;
+color: #f5f5f5;
+font-family: Arial;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
 }
-
-*{ box-sizing:border-box; }
-html,body{ height:100%; }
-body{
-margin:0;
-font-family: var(--font-body);
-color: var(--text);
-background:
-radial-gradient(900px 520px at 12% 0%, rgba(199,138,91,.18), transparent 55%),
-radial-gradient(900px 520px at 88% 10%, rgba(217,194,164,.12), transparent 55%),
-linear-gradient(180deg, var(--bg), #2a1a12);
-display:flex;
-align-items:center;
-justify-content:center;
-padding:24px;
+.box {
+background: #2b2725;
+padding: 30px;
+border-radius: 10px;
+width: 350px;
 }
-
-.login-wrap{
-width:min(470px, 100%);
+input {
+width: 100%;
+padding: 10px;
+margin-top: 10px;
+margin-bottom: 15px;
+border-radius: 5px;
+border: none;
 }
-
-.login-card{
-border-radius: 22px;
-background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
-border: 1px solid rgba(247,239,229,.14);
-box-shadow: var(--shadow);
-padding: 28px;
-backdrop-filter: blur(10px);
+button {
+padding: 10px 15px;
+background: #8b5e3c;
+border: none;
+color: white;
+border-radius: 5px;
+cursor: pointer;
 }
-
-.login-top{
-display:flex;
-align-items:center;
-gap:14px;
-margin-bottom:22px;
+.success {
+background: #2e7d32;
+padding: 10px;
+margin-top: 15px;
+display: none;
 }
-
-.logo{
-width:48px;height:48px;border-radius:16px;
-background: radial-gradient(120% 120% at 30% 20%, rgba(247,239,229,.18), rgba(199,138,91,.22));
-border: 1px solid rgba(247,239,229,.14);
-display:grid; place-items:center;
-}
-.logo svg{ width:24px;height:24px; }
-
-.title h1{
-margin:0;
-font-family: var(--font-display);
-font-size: 24px;
-color: #fff;
-}
-.title p{
-margin:4px 0 0;
-color: var(--muted);
-font-size: 13px;
-}
-
-.intro{
-margin:0 0 18px;
-color: rgba(255,255,255,.86);
-line-height:1.6;
-font-size:14px;
-}
-
-.field{
-margin-bottom:14px;
-}
-
-.field label{
-display:block;
-margin-bottom:6px;
-color: rgba(255,255,255,.90);
-font-size:13px;
-font-weight:600;
-}
-
-.field input{
-width:100%;
-padding:12px 14px;
-border-radius: 12px;
-border:1px solid rgba(247,239,229,.14);
-background: rgba(0,0,0,.18);
-color:#fff;
-outline:none;
-font-size:14px;
-}
-
-.field input::placeholder{
-color: rgba(247,239,229,.48);
-}
-
-.field input:focus{
-border-color: rgba(199,138,91,.45);
-box-shadow: 0 0 0 3px rgba(199,138,91,.12);
-}
-
-.login-actions{
-display:flex;
-gap:10px;
-flex-wrap:wrap;
-margin-top:18px;
-}
-
-.btn{
-cursor:pointer;
-border-radius: 14px;
-padding: 11px 16px;
-border:1px solid rgba(255,255,255,.18);
-background: rgba(0,0,0,.22);
-color: rgba(255,255,255,.92);
-transition: transform .12s ease, background .12s ease, border-color .12s ease;
-font-size:14px;
-}
-
-.btn:hover{
-transform: translateY(-1px);
-background: rgba(0,0,0,.30);
-border-color: rgba(199,138,91,.45);
-}
-
-.btn.primary{
-background: linear-gradient(135deg, rgba(199,138,91,.32), rgba(0,0,0,.20));
-border-color: rgba(199,138,91,.50);
-}
-
-.back-link{
-display:inline-block;
-margin-top:18px;
-color: var(--sand);
-font-size:13px;
-}
-
-.message{
-display:none;
-margin-top:16px;
-padding:12px 14px;
-border-radius: 12px;
-font-size:13px;
-line-height:1.5;
-}
-
-.message.error{
-background: rgba(255,154,143,.12);
-border:1px solid rgba(255,154,143,.30);
-color: #ffd3cd;
-}
-
-.message.success{
-background: rgba(168,230,176,.12);
-border:1px solid rgba(168,230,176,.30);
-color: #d9ffe0;
-}
-
-.demo-box{
-margin-top:18px;
-padding:12px 14px;
-border-radius: 12px;
-background: rgba(0,0,0,.16);
-border:1px solid rgba(247,239,229,.10);
-color: rgba(247,239,229,.78);
-font-size:12.5px;
-line-height:1.6;
+.error {
+background: #c62828;
+padding: 10px;
+margin-top: 15px;
+display: none;
 }
 </style>
 </head>
+
 <body>
-<div class="login-wrap">
-<div class="login-card">
-<div class="login-top">
-<div class="logo" aria-hidden="true">
-<svg viewBox="0 0 24 24" fill="none">
-<path d="M14 3v11.2a3.6 3.6 0 1 1-2-3.2V5.5l10-2V12" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-<path d="M14 5.5l10-2" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
-</svg>
-</div>
-<div class="title">
-<h1>Connexion admin</h1>
-<p>BKI Instrument — espace d’administration</p>
-</div>
-</div>
 
-<p class="intro">
-Connectez-vous avec un identifiant administrateur pour accéder à l’espace réservé.
-</p>
+<div class="box">
+<h2>Connexion admin</h2>
 
-<form id="loginForm">
-<div class="field">
-<label for="admin-id">Identifiant admin</label>
-<input id="admin-id" type="text" placeholder="Exemple : admin1" />
-</div>
+<input type="text" id="login" placeholder="Identifiant admin">
+<input type="password" id="password" placeholder="Mot de passe">
 
-<div class="field">
-<label for="admin-password">Mot de passe</label>
-<input id="admin-password" type="password" placeholder="Entrez votre mot de passe" />
-</div>
+<button onclick="loginAdmin()">Se connecter</button>
 
-<div class="login-actions">
-<button type="submit" class="btn primary">Se connecter</button>
-<a class="btn" href="index.html">Retour au site</a>
-</div>
-</form>
-
-<div id="errorBox" class="message error"></div>
-<div id="successBox" class="message success"></div>
-
-
-<a class="back-link" href="index.html">← Revenir à l’accueil</a>
-</div>
+<div class="success" id="success">Connexion réussie</div>
+<div class="error" id="error">Identifiant ou mot de passe incorrect</div>
 </div>
 
 <script>
-const admins = [
-{ id: "admin1", password: "bki2026" },
-{ id: "admin2", password: "musiqueLille" },
-{ id: "admin3", password: "studioLyon" }
+function loginAdmin() {
+
+var login = document.getElementById("login").value;
+var password = document.getElementById("password").value;
+
+var admins = [
+{user: "admin1", pass: "bki2026"},
+{user: "admin2", pass: "music2026"},
+{user: "admin3", pass: "instrument2026"}
 ];
 
-const form = document.getElementById("loginForm");
-const errorBox = document.getElementById("errorBox");
-const successBox = document.getElementById("successBox");
+var success = document.getElementById("success");
+var error = document.getElementById("error");
 
-form.addEventListener("submit", function(e){
-e.preventDefault();
+success.style.display = "none";
+error.style.display = "none";
 
-const adminId = document.getElementById("admin-id").value.trim();
-const adminPassword = document.getElementById("admin-password").value.trim();
+for (var i = 0; i < admins.length; i++) {
+if (login === admins[i].user && password === admins[i].pass) {
 
-errorBox.style.display = "none";
-successBox.style.display = "none";
+success.style.display = "block";
 
-if (!adminId || !adminPassword) {
-errorBox.textContent = "Veuillez remplir l’identifiant et le mot de passe.";
-errorBox.style.display = "block";
+setTimeout(function() {
+window.location.href = "http://10.0.0.10/bki_web/index.php";
+}, 1000);
+
 return;
 }
-
-const match = admins.find(a => a.id === adminId && a.password === adminPassword);
-
-if (!match) {
-errorBox.textContent = "Identifiant ou mot de passe incorrect.";
-errorBox.style.display = "block";
-return;
 }
 
-successBox.textContent = "Connexion réussie. La redirection réelle vers l’interface admin pourra être ajoutée ensuite.";
-successBox.style.display = "block";
-});
+error.style.display = "block";
+}
 </script>
+
 </body>
 </html>
