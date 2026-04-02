@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>BKI Instrument — Identité</title>
+<meta name="description" content="BKI Instrument — vitrine d'identité de marque." />
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;600&display=swap');
+
+:root{
+--bg: #3a2418;
+--wood: #4b2f21;
+--wood2:#5a3929;
+--cream:#f3e7d6;
+--sand:#d9c2a4;
+--text:#f7efe5;
+--muted: rgba(247,239,229,.78);
+--border: rgba(247,239,229,.14);
+--accent:#c78a5b;
+--shadow: 0 18px 55px rgba(0,0,0,.35);
+
+--radius: 18px;
+--max: 1120px;
+
+--font-body: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+--font-display: "Fraunces", ui-serif, Georgia, "Times New Roman", Times, serif;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+body{
+margin:0;
+font-family: var(--font-body);
+color: var(--text);
+background:
+radial-gradient(900px 520px at 12% 0%, rgba(199,138,91,.18), transparent 55%),
+radial-gradient(900px 520px at 88% 10%, rgba(217,194,164,.12), transparent 55%),
+linear-gradient(180deg, var(--bg), #2a1a12);
+overflow-x:hidden;
+}
+
+a{ color:inherit; text-decoration:none; }
+.container{
+width:min(var(--max), calc(100% - 40px));
+margin:0 auto;
+}
+
+header.nav{
+position: sticky;
+top:0;
+z-index:50;
+background: rgba(58,36,24,.76);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(247,239,229,.10);
+}
+.nav-inner{
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding: 14px 0;
+gap:16px;
+}
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+min-width: 220px;
+}
+.logo{
+width:40px;height:40px;border-radius: 16px;
+background: radial-gradient(120% 120% at 30% 20%, rgba(247,239,229,.18), rgba(199,138,91,.22));
+border: 1px solid rgba(247,239,229,.14);
+box-shadow: 0 12px 30px rgba(0,0,0,.25);
+display:grid; place-items:center;
+}
+.logo svg{ width:22px;height:22px; opacity:.95; }
+.brand-title{ line-height:1.1; display:flex; flex-direction:column; }
+.brand-title strong{
+font-family: var(--font-display);
+font-size: 15px;
+letter-spacing:.2px;
+}
+.brand-title small{ font-size: 12px; color: var(--muted); }
+
+nav.links{
+display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+}
+.pill{
+padding:9px 12px;
+border-radius:999px;
+border:1px solid rgba(247,239,229,.14);
+background: rgba(255,255,255,.06);
+font-size: 13px;
+color: rgba(247,239,229,.92);
+transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.pill:hover{
+transform: translateY(-1px);
+background: rgba(255,255,255,.10);
+border-color: rgba(199,138,91,.35);
+}
+.pill.active{
+border-color: rgba(199,138,91,.45);
+background: linear-gradient(135deg, rgba(199,138,91,.18), rgba(255,255,255,.06));
+}
+.pill.cta{
+background: linear-gradient(135deg, rgba(199,138,91,.26), rgba(255,255,255,.06));
+border-color: rgba(199,138,91,.40);
+}
+.pill.admin-pill{
+background: linear-gradient(135deg, rgba(199,138,91,.30), rgba(255,255,255,.06));
+border-color: rgba(199,138,91,.48);
+}
+.pill.admin-pill:hover{
+background: linear-gradient(135deg, rgba(199,138,91,.42), rgba(255,255,255,.10));
+border-color: rgba(199,138,91,.60);
+}
+
+.hero{
+position:relative;
+margin: 0;
+min-height: 70vh;
+display:flex;
+align-items:flex-end;
+border-bottom: 1px solid rgba(247,239,229,.10);
+overflow:hidden;
+}
+.hero-bg{
+position:absolute;
+inset:0;
+background-image:
+linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.58)),
+url("https://images.pexels.com/photos/13013385/pexels-photo-13013385.jpeg?cs=srgb&dl=pexels-ani-tolentino-1736345-13013385.jpg&fm=jpg");
+background-size: cover;
+background-position: center center;
+transform: translateZ(0);
+will-change: transform;
+filter: saturate(1.05) contrast(1.03);
+}
+.hero-grain{
+position:absolute; inset:0;
+background-image:
+radial-gradient(circle at 10% 10%, rgba(255,255,255,.06), transparent 35%),
+radial-gradient(circle at 90% 20%, rgba(255,255,255,.05), transparent 35%),
+radial-gradient(circle at 40% 90%, rgba(255,255,255,.04), transparent 35%);
+opacity:.35;
+pointer-events:none;
+mix-blend-mode: overlay;
+}
+
+.hero-content{
+position:relative;
+width:100%;
+padding: 64px 0 42px;
+}
+.hero-inner{
+width:min(var(--max), calc(100% - 40px));
+margin:0 auto;
+display:flex;
+flex-direction:column;
+gap: 14px;
+max-width: var(--max);
+}
+
+.hero-title{
+margin:0;
+font-family: var(--font-display);
+font-size: clamp(34px, 6vw, 64px);
+letter-spacing: -0.6px;
+line-height: 1.02;
+color: #ffffff;
+text-shadow: 0 18px 60px rgba(0,0,0,.65);
+}
+.hero-sub{
+margin:0;
+color: rgba(255,255,255,.88);
+font-size: 15.5px;
+line-height: 1.65;
+max-width: 70ch;
+text-shadow: 0 10px 35px rgba(0,0,0,.55);
+}
+
+.hero-actions{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top: 6px;
+}
+.btn{
+cursor:pointer;
+border-radius: 14px;
+padding: 11px 14px;
+border:1px solid rgba(255,255,255,.18);
+background: rgba(0,0,0,.22);
+color: rgba(255,255,255,.92);
+display:inline-flex; align-items:center; gap:10px;
+transition: transform .12s ease, background .12s ease, border-color .12s ease;
+backdrop-filter: blur(10px);
+}
+.btn:hover{
+transform: translateY(-1px);
+background: rgba(0,0,0,.30);
+border-color: rgba(199,138,91,.45);
+}
+.btn.primary{
+background: linear-gradient(135deg, rgba(199,138,91,.32), rgba(0,0,0,.20));
+border-color: rgba(199,138,91,.50);
+}
+
+.hero-badges{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+margin-top: 10px;
+}
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding: 8px 12px;
+border-radius: 999px;
+border: 1px solid rgba(255,255,255,.18);
+background: rgba(0,0,0,.22);
+color: rgba(255,255,255,.86);
+font-size: 12.5px;
+backdrop-filter: blur(10px);
+}
+.badge i{
+width:8px;height:8px;border-radius:50%;
+background: linear-gradient(135deg, var(--accent), rgba(255,255,255,.18));
+display:inline-block;
+}
+
+main{ padding-bottom: 10px; }
+section{ padding: 42px 0; }
+.section-title{
+display:flex;
+align-items:flex-end;
+justify-content:space-between;
+gap:16px;
+margin-bottom: 14px;
+}
+.section-title h2{
+margin:0;
+font-family: var(--font-display);
+font-size: 20px;
+letter-spacing: -.2px;
+color: rgba(247,239,229,.96);
+}
+.section-title p{
+margin:0;
+max-width: 72ch;
+color: rgba(247,239,229,.72);
+font-size: 13.5px;
+line-height: 1.6;
+}
+
+.cards{
+display:grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 14px;
+}
+@media (max-width: 980px){ .cards{ grid-template-columns: 1fr; } }
+
+.card{
+border-radius: 18px;
+background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.05));
+border: 1px solid rgba(247,239,229,.14);
+box-shadow: var(--shadow);
+padding: 16px;
+transition: transform .14s ease, border-color .14s ease, background .14s ease;
+}
+.card:hover{
+transform: translateY(-2px);
+border-color: rgba(199,138,91,.40);
+background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+}
+
+.icon{
+width:38px;height:38px;border-radius:16px;
+display:grid; place-items:center;
+background: linear-gradient(135deg, rgba(199,138,91,.25), rgba(255,255,255,.06));
+border: 1px solid rgba(247,239,229,.14);
+margin-bottom: 10px;
+}
+.icon svg{
+width:18px;height:18px;
+stroke: rgba(255,255,255,.92);
+stroke-width: 1.8;
+fill: none;
+opacity: .96;
+}
+
+.card h3{
+margin:0 0 6px;
+font-family: var(--font-display);
+font-size: 15px;
+color: rgba(255,255,255,.95);
+letter-spacing: -.1px;
+}
+.card p{ margin:0; color: rgba(247,239,229,.74); font-size: 13.5px; line-height:1.6; }
+
+footer{
+padding: 22px 0 36px;
+border-top: 1px solid rgba(247,239,229,.10);
+color: rgba(247,239,229,.70);
+font-size: 12.5px;
+}
+.foot{
+display:flex;
+justify-content:space-between;
+gap:12px;
+flex-wrap:wrap;
+align-items:center;
+}
+
+.reveal{ opacity:0; transform: translateY(10px); transition: opacity .5s ease, transform .5s ease; }
+.reveal.on{ opacity:1; transform: translateY(0); }
+/* ===== RESPONSIVE TELEPHONE ===== */
+
+@media screen and (max-width: 768px) {
+
+
+
+    header {
+
+        padding: 10px;
+
+    }
+
+
+
+    .nav-inner {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+
+    .hero {
+
+        height: auto;
+
+        padding: 40px 15px;
+
+        text-align: center;
+
+    }
+
+
+
+    .hero h1 {
+
+        font-size: 28px;
+
+    }
+
+
+
+    .hero p {
+
+        font-size: 16px;
+
+    }
+
+
+
+    .btns {
+
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 10px;
+
+    }
+
+
+
+    .btns a {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+
+
+    .cards {
+
+        flex-direction: column;
+
+    }
+
+
+
+    footer {
+
+        text-align: center;
+
+        font-size: 13px;
+
+        padding: 20px;
+
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+<header class="nav" id="top">
+<div class="container">
+<div class="nav-inner">
+<a class="brand" href="#top" aria-label="Accueil BKI Instrument">
+<div class="logo" aria-hidden="true">
+<svg viewBox="0 0 24 24" fill="none">
+<path d="M14 3v11.2a3.6 3.6 0 1 1-2-3.2V5.5l10-2V12" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M14 5.5l10-2" stroke="rgba(255,255,255,.92)" stroke-width="2" stroke-linecap="round"/>
+</svg>
+</div>
+<div class="brand-title">
+<strong>BKI Instrument</strong>
+<small>magasin d’instruments, ambiance chaleureuse</small>
+</div>
+</a>
+
+<nav class="links" aria-label="Navigation">
+<a class="pill" href="#histoire">Histoire</a>
+<a class="pill" href="#univers">Univers</a>
+<a class="pill" href="#magasins">Magasins</a>
+<a class="pill cta" href="#contact">Contact</a>
+<a class="pill admin-pill" href="admin.html">Admin</a>
+</nav>
+</div>
+</div>
+</header>
+
+<section class="hero" aria-label="Bandeau principal">
+<div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+<div class="hero-grain" aria-hidden="true"></div>
+
+<div class="hero-content">
+<div class="hero-inner">
+<h1 class="hero-title">BKI Instrument</h1>
+<p class="hero-sub">
+Le bon son, au bon moment. Une boutique chaleureuse où l’on peut tester, écouter, comparer
+et repartir avec l’instrument qui vous ressemble.
+</p>
+
+<div class="hero-actions">
+<a class="btn primary" href="#univers">Découvrir l’univers</a>
+<a class="btn" href="#magasins">Nos magasins</a>
+</div>
+
+<div class="hero-badges">
+<span class="badge"><i></i> Essai libre</span>
+<span class="badge"><i></i> Conseils</span>
+<span class="badge"><i></i> Démonstrations</span>
+<span class="badge"><i></i> Audio et MAO</span>
+</div>
+</div>
+</div>
+</section>
+
+<main>
+<section id="histoire">
+<div class="container">
+<div class="section-title reveal">
+<h2>Notre histoire</h2>
+<p>
+BKI Instrument a été imaginée comme une enseigne où l’on se sent bien : du bois, de la chaleur,
+et surtout la possibilité d’essayer avant de choisir.
+</p>
+</div>
+
+<div class="cards">
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M12 21s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Z"/><path d="M12 10.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"/></svg>
+</div>
+<h3>Une enseigne française</h3>
+<p>Une identité simple et cohérente, pensée pour accueillir tous les profils de musiciens.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M9 18a3 3 0 1 0 0-6a3 3 0 0 0 0 6Z"/><path d="M12 12V3l9-2v11"/><path d="M12 5l9-2"/></svg>
+</div>
+<h3>Une ambiance chaleureuse</h3>
+<p>Une atmosphère douce et maîtrisée, qui donne envie de prendre son temps.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M16 11c1.7 0 3-1.3 3-3s-1.3-3-3-3s-3 1.3-3 3s1.3 3 3 3Z"/><path d="M8 11c1.7 0 3-1.3 3-3S9.7 5 8 5S5 6.3 5 8s1.3 3 3 3Z"/><path d="M5 20c0-2.8 2.2-5 5-5"/><path d="M19 20c0-2.8-2.2-5-5-5"/><path d="M10 15h4"/></svg>
+</div>
+<h3>Le conseil avant tout</h3>
+<p>On guide chaque client selon son niveau, ses goûts et son budget.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="univers">
+<div class="container">
+<div class="section-title reveal">
+<h2>Univers BKI</h2>
+<p>Des espaces centrés sur l’essai : instruments, audio, accessoires, sans prise de tête.</p>
+</div>
+
+<div class="cards">
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M7 20l10-10"/><path d="M16 3l5 5"/><path d="M14 5l5 5"/><path d="M6 21l-3 0l0-3l9-9l3 3Z"/></svg>
+</div>
+<h3>Instruments</h3>
+<p>Guitares, basses, claviers, percussions, vents, avec zones d’essai.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 16 0"/><path d="M6 12a6 6 0 0 1 12 0"/><path d="M8 12a4 4 0 0 1 8 0"/><path d="M12 13v8"/></svg>
+</div>
+<h3>Audio et MAO</h3>
+<p>Casques, micros, interfaces, enceintes, conseils pour jouer et enregistrer.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M20 7H4"/><path d="M20 12H4"/><path d="M20 17H4"/><path d="M7 7v10"/><path d="M17 7v10"/></svg>
+</div>
+<h3>Accessoires</h3>
+<p>Cordes, médiators, câbles, stands, l’essentiel au même endroit.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="magasins">
+<div class="container">
+<div class="section-title reveal">
+<h2>Magasins pilotes</h2>
+<p>Paris, Lille, Lyon : trois boutiques repères pour l’identité de marque.</p>
+</div>
+
+<div class="cards">
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M7 21V8l5-4l5 4v13"/><path d="M9 21v-6h6v6"/></svg>
+</div>
+<h3>Paris</h3>
+<p>Grand espace, essais fréquents, ambiance vivante mais confortable.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 20V9l6-5l6 5v11"/><path d="M9 12h6"/><path d="M9 15h6"/></svg>
+</div>
+<h3>Lille</h3>
+<p>Magasin cosy, conseil et accessoires, atmosphère posée.</p>
+</div>
+<div class="card reveal">
+<div class="icon" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M4 18V6"/><path d="M8 18V9"/><path d="M12 18V12"/><path d="M16 18V8"/><path d="M20 18V10"/></svg>
+</div>
+<h3>Lyon</h3>
+<p>Focus MAO et audio, tests casque et enceintes, ambiance studio.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+<div class="section-title reveal">
+<h2>Contact</h2>
+<p>Bloc vitrine simple (démo). Remplace si besoin par vos vraies infos.</p>
+</div>
+
+<div class="card reveal">
+<p style="margin:0; color: rgba(247,239,229,.80); line-height:1.6;">
+<strong style="font-family: var(--font-display);">BKI Instrument</strong><br/>
+Service client : <span style="color: var(--sand);">contact@bki-instrument.fr</span><br/>
+Réseaux : Instagram, TikTok, YouTube (démo)<br/>
+<span style="opacity:.78; font-size:12.5px;">Image libre de droits : Pexels, © <span id="y"></span></span>
+</p>
+</div>
+</div>
+</section>
+</main>
+
+<footer>
+<div class="container">
+<div class="foot">
+<div>© <span id="yy"></span> <strong style="font-family: var(--font-display);">BKI Instrument</strong> — identité de marque</div>
+<div style="opacity:.78;">Palette : brun, bois, crème — animations légères</div>
+</div>
+</div>
+</footer>
+
+<script>
+const yr = new Date().getFullYear();
+document.getElementById("y").textContent = yr;
+document.getElementById("yy").textContent = yr;
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+a.addEventListener("click", (e) => {
+const id = a.getAttribute("href");
+const el = document.querySelector(id);
+if(!el) return;
+e.preventDefault();
+el.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+});
+
+const navLinks = Array.from(document.querySelectorAll("nav.links .pill"))
+.filter(l => l.getAttribute("href")?.startsWith("#"));
+const sections = navLinks.map(l => document.querySelector(l.getAttribute("href"))).filter(Boolean);
+
+const setActive = () => {
+const y = window.scrollY + 140;
+let current = null;
+for (const sec of sections){
+if (sec.offsetTop <= y) current = sec;
+}
+navLinks.forEach(l => l.classList.remove("active"));
+if(current){
+const match = navLinks.find(l => l.getAttribute("href") === "#" + current.id);
+if(match) match.classList.add("active");
+}
+};
+window.addEventListener("scroll", setActive, { passive:true });
+setActive();
+
+const heroBg = document.getElementById("heroBg");
+window.addEventListener("scroll", () => {
+if(!heroBg) return;
+const y = window.scrollY;
+heroBg.style.transform = `translateY(${Math.min(18, y * 0.02)}px)`;
+}, { passive:true });
+
+const revealEls = Array.from(document.querySelectorAll(".reveal"));
+const io = new IntersectionObserver((entries) => {
+entries.forEach(e => { if(e.isIntersecting) e.target.classList.add("on"); });
+}, { threshold: 0.16 });
+revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
